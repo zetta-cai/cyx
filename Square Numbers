@@ -1,0 +1,52 @@
+#define _CRT_SECURE_NO_DEPRECATE //压报错
+
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+#include<string>
+#include<vector>
+#include<stack>
+#include<bitset>
+#include<cstdlib>
+#include<cmath>
+#include<set>
+#include<list>
+#include<deque>
+#include<map>
+#include<queue> 
+
+#define DBG(x) \
+  (void)(cout << "L" << __LINE__ \
+  << ": " << #x << " = " \
+  << (x) << '\n')
+
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+const double PI = acos(-1.0);
+const double esp = 10e-6;
+const int INF = 1000000000; //2147483647
+
+
+
+int f(int x)
+{
+    int ans = 0;
+    for (int i = 1; i * i <= x; i++)
+    {
+        ans++;
+    }
+    return ans;
+}
+int main()
+{
+    int a, b;
+    while (scanf("%d%d", &a, &b))
+    {
+        if (a == 0 && b == 0) break;
+
+        cout << f(b) - f(a - 1) << endl;
+    }
+    return 0;
+}
