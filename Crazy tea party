@@ -1,0 +1,16 @@
+#include<iostream>
+using namespace std;
+unsigned long long res;
+int main()
+{
+    int n;
+    int l; 
+    cin>>n;
+    while(n--){
+        cin>>l;
+        if(l%2==0) res=((l-2)/2)*(l/2);
+        if(l%2==1) res=((l-1)/2)*((l-1)/2);
+        cout<<res<<endl;
+    }
+    return 0;
+}
