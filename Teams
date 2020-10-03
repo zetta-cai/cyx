@@ -1,0 +1,56 @@
+#define _CRT_SECURE_NO_DEPRECATE //压报错
+
+#include<iostream>
+#include<cstdio>
+#include<cstring>
+#include<algorithm>
+#include<string>
+#include<vector>
+#include<stack>
+#include<bitset>
+#include<cstdlib>
+#include<cmath>
+#include<set>
+#include<list>
+#include<deque>
+#include<map>
+#include<queue> 
+
+#define DBG(x) \
+  (void)(cout << "L" << __LINE__ \
+  << ": " << #x << " = " \
+  << (x) << '\n')
+
+using namespace std;
+typedef long long ll;
+typedef pair<int, int> pii;
+const double PI = acos(-1.0);
+const double esp = 10e-6;
+const int INF = 1000000000; //2147483647
+
+const int modd = 1000000007;
+
+unsigned long long f(int n)                               
+{
+    long long v;
+    if (n == 0)
+        return 1;
+    v = f(n / 2);                         
+    if (n % 2 == 0)
+        return v * v % modd;
+    else
+        return (v * v % modd * 2%modd) % modd;
+}
+int main()
+{
+    int t, n, i;
+    unsigned long long ans;
+    scanf("%d", &t);
+    for (i = 1; i <= t; i++)
+    {
+        scanf("%d", &n);
+        ans = (n * f(n - 1)) % modd;
+        printf("Case #%d: %lld\n", i, ans);
+    }
+    return 0;
+}
