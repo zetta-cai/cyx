@@ -1,0 +1,37 @@
+#include<iostream>
+#include<cstdio>
+#include<set>
+
+using namespace std;
+typedef  long long LL;
+
+
+
+char dfd[10][10];
+
+int dx[4] = { 1,0,-1,0 };
+int dy[4] = { 0,1,0,-1 };
+set<string> mogic;
+void Dfs(int x, int y, string s) {
+    if (s.length() == 6) {
+        mogic.insert(s);
+        return;
+    }
+    int cx, cy;
+    for (int i = 0; i < 4; ++i) {
+        cx = x + dx[i], cy = y + dy[i];
+        if (cx > 0 && cx <= 5 && cy > 0 && cy <= 5 )
+            Dfs(cx, cy, s + dfd[cx][cy]);
+    }
+}
+int main() {
+    for (int i = 1; i <= 5; ++i)
+        for (int j = 1; j <= 5; ++j)
+            cin >> dfd[i][j];
+    string tmp;
+    for (int i = 1; i <= 5; ++i)
+        for (int j = 1; j <= 5; ++j)
+            Dfs(i, j, tmp = dfd[i][j]);
+    cout << mogic.size() << endl;
+    return 0;
+}
