@@ -1,0 +1,49 @@
+#include<iostream>
+#include <cstdio> 
+#include <cstdlib> 
+const int PT[][13] = //杨辉三角表 
+{ 
+    { 1 } , // N = 1 
+    { 1 , 1 } , // N = 2 
+    { 1 , 2 , 1 } , // N = 3 
+    { 1 , 3 , 3 , 1 } , // N = 4 
+    { 1 , 4 , 6 , 4 , 1 } , // N = 5 
+    { 1 , 5 , 10, 10, 5 , 1 } , // N = 6 
+    { 1 , 6 , 15, 20, 15, 6 , 1 } , // N = 7 
+    { 1 , 7 , 21, 35, 35, 21, 7 , 1 } , // N = 8 
+    { 1 , 8 , 28, 56, 70, 56, 28, 8 , 1 } , // N = 9 
+    { 1 , 9 , 36, 84,126,126, 84, 36, 9 , 1 } , // N = 10 
+    { 1 , 10, 45,120,210,252,210,120, 45, 10 , 1 } , // N = 11 
+    { 1 , 11, 55,165,330,462,462,330,165, 55 ,11 , 1 } 
+}; // N = 12 
+int a[15];
+bool used[12];
+using namespace std;
+bool f;
+int n,sum;
+void dfs(int s,int p){
+    if( p == n ) { 
+        if( s==sum) 
+        f = true ; 
+        return ; 
+    }
+    for(int i=1;i<=n;i++) { 
+        if(used[i])continue ; 
+        used[i] = true ;
+        a[p]=i;
+        if( s+ PT[n-1][p]*a[p] <= sum ) dfs( s+ PT[n-1][p]*a[p] , p+1 ) ;
+        if(f) return ;
+        used[i]=false;;
+    }
+}
+int main()
+{
+    
+    scanf("%d%d",&n,&sum); 
+    dfs(0,0); 
+    if(f)
+        for(int i=0;i<n;i++)
+            printf("%d ",a[i]); 
+    
+    return 0;
+}
