@@ -1,0 +1,34 @@
+#include <cstdio>
+#include <cstring>
+#define MAXN  20050
+int s[MAXN]={0};
+int main()
+{
+    int n,m;
+    
+    s[1]=1;
+    for(int i = 2; i < MAXN; i++)
+    {
+        if(s[i] == 0)
+            for(int j = i; j < MAXN; j+=i)
+            {
+                s[j]=i;
+            }
+    }
+    while(~scanf("%d",&n))
+    {
+        int ans;
+        int ma = -1;
+        for(int i = 0; i < n; i++)
+        {
+            scanf("%d",&m);
+            if(s[m] > ma)
+            {
+                ma = s[m];
+                ans = m;
+            }
+        }
+        printf("%d\n",ans);
+    }
+    return 0;
+}
